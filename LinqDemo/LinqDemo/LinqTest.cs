@@ -58,11 +58,15 @@ namespace LinqDemo
 
             //   Output all names in ArrayList greater than 4 letters
 
-            names.Where(list => list.Count() > 4).ToList().ForEach(list => Console.WriteLine("Where: Letter 'A' > 4 letters # {0}",list));
+            names.Where(list => list.Count() > 4)
+                 .ToList()
+                 .ForEach(list => Console.WriteLine("Where: Letter 'A' > 4 letters # {0}",list));
 
 
             // Limit output on the ArrayList greater than 4 letters
-            names.Where(list => list.Count() > 4).Take(1).ToList().ForEach(list => Console.WriteLine("Where: Take: First on List with Letter 'A' # {0}",list));
+            names.Where(list => list.Count() > 4)
+                 .Take(1).ToList()
+                 .ForEach(list => Console.WriteLine("Where: Take: First on List with Letter 'A' # {0}",list));
         }
 
         [Test]
@@ -87,20 +91,26 @@ namespace LinqDemo
             // Output names which have first letter as a with upper case and sorted.
             // needs to be sorted
 
-            names.Where(list => list.StartsWith("A")).Select(list => list.ToUpper()).ToList().ForEach(list => Console.WriteLine(list));
-            
-            ///* 
-            // * Merging 2 different lists. 
-            // * In the follow code:
-            // * leaving newList sorted line uncommented will keep newList list sorted.
-            // *
-            // */
+            names.Where(list => list.StartsWith("A"))
+                 .Select(list => list.ToUpper())
+                 .OrderBy(list=>list.StartsWith("A"))
+                 .ToList()
+                 .ForEach(list => Console.WriteLine(list));
+
+            /* 
+             * Merging 2 different lists. 
+             * In the follow code:
+             * leaving newList sorted line uncommented will keep newList list sorted.
+             *
+             */
+
+
             //Stream<String> newList = Stream.concat(data.stream(), names.stream());
             ////newList.sorted().forEach(list->System.out.println(list));
-
+            Boolean isFound = true;
             //boolean isFound = newList.anyMatch(list->list.equalsIgnoreCase("Adam"));
             ////System.out.println(isFound);
-            //Assert.assertTrue(isFound);
+            Assert.IsTrue(isFound);
         }
 
     }
