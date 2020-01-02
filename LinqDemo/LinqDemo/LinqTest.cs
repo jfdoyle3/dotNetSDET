@@ -5,6 +5,10 @@ using System.Linq;
 
 namespace LinqDemo
 {
+    class Names
+    {
+        public string Name { get; set; }
+    }
     public class LinqTest
     {
         // Typical way to get a count and iterate thru a list or array
@@ -80,8 +84,14 @@ namespace LinqDemo
             // Output names that are last letter as 'a' and output them in upper case.
             //Stream.of("Albert","Jim","Melissa","Adam","Andrea").filter(list->list.endsWith("a")).map(list->list.toUpperCase()).forEach(list->System.out.println(list));
 
-           List<string> names=new List<string> { "Albert", "Jim", "Melissa", "Adam", "Andrea" };
-               
+            List<string> names = new List<string>() { "Albert", "Jim", "Melissa", "Adam", "Andrea" };
+            //List<Names> names = new List<Names>() { 
+            // new Names() {Name= "Albert" },
+            // new Names() {Name= "Jim" },
+            // new Names() {Name= "Melissa" },
+            // new Names() {Name= "Adam" },
+            // new Names() {Name= "Andrea" }};
+
             names.Where(list => list.EndsWith("a"))
                  .Select(list => list.ToUpper())
                  .ToList()
