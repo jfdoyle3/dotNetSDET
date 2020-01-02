@@ -117,7 +117,7 @@ namespace LinqDemo
            // List<string> newList = data.Concat(names);
             IEnumerable<string> newList = data.Union(names);
             newList.ToList().ForEach(list => Console.WriteLine(list));
-            // Boolean isFound = true;
+            Boolean isFound = true;
            // Boolean isFound = newList.Where(list => list.StartsWith("Adam")).ToList();
             ////System.out.println(isFound);
             Assert.IsTrue(isFound);
