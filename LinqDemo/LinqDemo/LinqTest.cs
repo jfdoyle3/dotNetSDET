@@ -5,17 +5,17 @@ using System.Linq;
 
 namespace LinqDemo
 {
-    class Names
-    {
-        public string Name { get; set; }
-    }
+    //class Names
+    //{
+    //    public string Name { get; set; }
+    //}
     public class LinqTest
     {
         // Typical way to get a count and iterate thru a list or array
         [Test]
         public void Typical()
         {
-            List<String> names = new List<String>();
+            List<string> names = new List<string>();
             names.Add("Albert");
             names.Add("Jim");
             names.Add("Melissa");
@@ -25,7 +25,7 @@ namespace LinqDemo
 
             for (int idx = 0; idx < names.Count; idx++)
             {
-                String name = names[idx];
+                string name = names[idx];
                 if (name.Contains("A"))
                     count++;
             }
@@ -37,7 +37,7 @@ namespace LinqDemo
         [Test]
         public void LinqWhere()
         {
-            List<String> names = new List<String>();
+            List<string> names = new List<string>();
             names.Add("Albert");
             names.Add("Jim");
             names.Add("Melissa");
@@ -76,7 +76,7 @@ namespace LinqDemo
         [Test]
         public void LinqSelect()
         {
-            List<String> data = new List<String>();
+            List<string> data = new List<string>();
             data.Add("Student");
             data.Add("CareerDevs");
             data.Add("Jim");
@@ -103,7 +103,6 @@ namespace LinqDemo
 
             names.Where(list => list.StartsWith("A"))
                  .Select(list => list.ToUpper())
-                 .OrderBy(list=>list.StartsWith("A"))
                  .ToList()
                  .ForEach(list => Console.WriteLine(list));
 
@@ -115,10 +114,11 @@ namespace LinqDemo
              */
 
 
-            //Stream<String> newList = Stream.concat(data.stream(), names.stream());
-            ////newList.sorted().forEach(list->System.out.println(list));
-            Boolean isFound = true;
-            //boolean isFound = newList.anyMatch(list->list.equalsIgnoreCase("Adam"));
+           // List<string> newList = data.Concat(names);
+            IEnumerable<string> newList = data.Union(names);
+            newList.ToList().ForEach(list => Console.WriteLine(list));
+            // Boolean isFound = true;
+           // Boolean isFound = newList.Where(list => list.StartsWith("Adam")).ToList();
             ////System.out.println(isFound);
             Assert.IsTrue(isFound);
         }
