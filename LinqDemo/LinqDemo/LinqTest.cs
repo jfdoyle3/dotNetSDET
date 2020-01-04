@@ -91,20 +91,29 @@ namespace LinqDemo
             // new Names() {Name= "Melissa" },
             // new Names() {Name= "Adam" },
             // new Names() {Name= "Andrea" }};
-
+            Console.WriteLine("Where: Select: End with 'a' change to Upper");
             names.Where(list => list.EndsWith("a"))
                  .Select(list => list.ToUpper())
                  .ToList()
-                 .ForEach(list => Console.WriteLine("Where: Select: End with 'a' change to Upper: {0}",list));
+                 .ForEach(list => Console.WriteLine(list));
 
-
+            Console.WriteLine("-----------------------------");
             // Output names which have first letter as a with upper case and sorted.
             // needs to be sorted
-
+            Console.WriteLine("Where: Select: Sorted: Names which have first letter as A with upper case and sorted.");
             names.Where(list => list.StartsWith("A"))
                  .Select(list => list.ToUpper())
                  .ToList()
-                 .ForEach(list => Console.WriteLine(list));
+                 .Sort()
+                
+                 
+              .ForEach(list => Console.WriteLine(list));
+            names.Sort();
+            foreach(var name in names)
+                Console.WriteLine(name);
+             
+
+            Console.WriteLine("-----------------------------");
 
             /* 
              * Merging 2 different lists. 
@@ -113,14 +122,14 @@ namespace LinqDemo
              *
              */
 
-
+            Console.WriteLine("Merge: 2 Lists and find an item n the new list");
            // List<string> newList = data.Concat(names);
             IEnumerable<string> newList = data.Union(names);
-            newList.ToList().ForEach(list => Console.WriteLine(list));
-            Boolean isFound = true;
-           // Boolean isFound = newList.Where(list => list.StartsWith("Adam")).ToList();
-            ////System.out.println(isFound);
-            Assert.IsTrue(isFound);
+          //  newList.ToList().ForEach(list => Console.WriteLine(list));
+           // Boolean isFound = true;
+            //Boolean isFound = newList.Where(list => list.StartsWith("Adam")).ToList();
+            //Console.WriteLine(isFound);
+            //Assert.IsTrue(isFound);
         }
 
     }
