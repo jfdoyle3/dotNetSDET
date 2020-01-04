@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace LinqDemo
 {
-    //class Names
-    //{
-    //    public string Name { get; set; }
-    //}
+    class Names
+    {
+        public string Name { get; set; }
+    }
     public class LinqTest
     {
         // Typical way to get a count and iterate thru a list or array
@@ -30,10 +30,10 @@ namespace LinqDemo
                     count++;
             }
 
-             
-              Console.WriteLine("Typical: Contains letter 'A' in name # {0}",count);
+          Console.WriteLine("Typical: Contains letter 'A' in name # {0}",count);
+          Console.WriteLine("-----------------------------");
         }
-
+        
         [Test]
         public void LinqWhere()
         {
@@ -50,27 +50,29 @@ namespace LinqDemo
              *  If .filter returns false .count returns 0.
              *  We can create stream. How to use .filter in stream API
              */
-
+            ;
             int count = names.Where(list => list.StartsWith("A")).Count();
-            Console.WriteLine("Where: Starts With 'A' # {0}. This is done with multiple lines of code.",count);
-
+            Console.WriteLine("Where: Starts With 'A' # {0}. This is done with multiple lines of code.", count);
+            Console.WriteLine("-----------------------------");
             int listCount = new List<string> { "Albert", "Jim", "Melissa", "Adam", "Andrea" }
                                              .Where(list => list.StartsWith("A"))
                                              .Count();
 
             Console.WriteLine("Where: Starts With 'A' # {0}. This is done with one line of code.",listCount);
-
+            Console.WriteLine("-----------------------------");
             //   Output all names in ArrayList greater than 4 letters
-
+            Console.WriteLine("Where: Letter 'A' > 4 letters");
             names.Where(list => list.Count() > 4)
                  .ToList()
-                 .ForEach(list => Console.WriteLine("Where: Letter 'A' > 4 letters # {0}",list));
+                 .ForEach(list => Console.WriteLine(list));
 
-
+            Console.WriteLine("-----------------------------");
             // Limit output on the ArrayList greater than 4 letters
+            Console.WriteLine("Where: Take: First on List with Letter 'A'");
             names.Where(list => list.Count() > 4)
                  .Take(1).ToList()
-                 .ForEach(list => Console.WriteLine("Where: Take: First on List with Letter 'A' # {0}",list));
+                 .ForEach(list => Console.WriteLine(list));
+            Console.WriteLine("-----------------------------");
         }
 
         [Test]
@@ -104,10 +106,10 @@ namespace LinqDemo
             names.Where(list => list.StartsWith("A"))
                  .Select(list => list.ToUpper())
                  .ToList()
-                 .Sort()
+                 .Sort();
                 
                  
-              .ForEach(list => Console.WriteLine(list));
+           //   .ForEach(list => Console.WriteLine(list));
             names.Sort();
             foreach(var name in names)
                 Console.WriteLine(name);
