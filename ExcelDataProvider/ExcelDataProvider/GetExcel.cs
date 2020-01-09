@@ -20,8 +20,8 @@ namespace ExcelDataProvider
                 {
                     do
                     {
-                        while (sheet.Read()) //Each ROW 
-                                             // At end of Row will Return False 
+                        while (sheet.Read()) //reads Each ROW 
+                                             // At end of Rows  will Return False 
                                              // and End While loop.
                         {
                             for (int column = 0; column < sheet.FieldCount; column++)
@@ -31,7 +31,7 @@ namespace ExcelDataProvider
                             }
                         }
                     } while (sheet.NextResult()); //Move to NEXT SHEET
-                                                  // At end of Row will Return False 
+                                                  // When ALL the ROWS in sheet are done 
                                                   // and End While loop.
 
                 }
@@ -63,16 +63,17 @@ namespace ExcelDataProvider
         public void WorkingWithExcelDataReader()
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            //This Excel 2 Sheets: sheet1: CareerDevs , sheet2: Data
             using (FileStream xlsFile = File.Open("D:\\repository\\SDET\\javaSDET\\ExcelFiles\\excelDriven.xlsx", FileMode.Open, FileAccess.Read))
             {
                 using (IExcelDataReader sheet = ExcelReaderFactory.CreateReader(xlsFile))
                 {
-                    sheet.Read(); //grabs first sheet first Row: 1
-                   // Console.WriteLine(sheet.GetValue(0)); //  Output Row 1 Cell A
-                    sheet.NextResult(); // grabs Next Sheet
-                    sheet.Read(); // get Row 1 and move onto
+                    sheet.Read(); //grabs First: CareerDevs sheet the first Row: 1
+                   // Console.WriteLine(sheet.GetValue(0)); //  Output Row 1 Cell A: Header row Typical
+                    sheet.NextResult(); // grabs Next Sheet: Data
+                    sheet.Read(); // get Row 1: Header Row. Move onto
                     sheet.Read(); // to get Row 2.
-                    Console.WriteLine(sheet.GetValue(1));  // Output Row 2 Cell B
+                    Console.WriteLine("Data Item in sheet Row 2 Cell B: {0}",sheet.GetValue(1));  // Output Data Sheet Row 2 Cell B.
                 }
             }
         }
